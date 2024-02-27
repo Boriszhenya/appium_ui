@@ -25,7 +25,7 @@ public class SunflowerAppTest {
     @BeforeEach
     public void setUp() throws URISyntaxException, MalformedURLException {
         UiAutomator2Options options = new UiAutomator2Options()
-                .setApp("C:\\Users\\guest_h0xcuas\\Documents\\appium_example\\src\\main\\resources\\test.apk") // Путь к приложению
+                .setApp("C:\\Users\\boris\\IdeaProjects\\appium_ui\\src\\main\\resources\\test.apk") // Путь к приложению C:\Users\boris\IdeaProjects\appium_ui\src\main\resources\test.apk
                 .setUdid("emulator-5554");
         driver = new AndroidDriver(
                 new URI("http://127.0.0.1:4723").toURL(), options

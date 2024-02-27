@@ -26,10 +26,17 @@ public class AndroidTest {
             el.click();
             WebElement textContainer = driver.findElement(
                     AppiumBy.xpath(
-                            "//android.widget.TextView[@resource-id='com.google.android.dialer:id/empty_content_view_message']"
+                            "//android.widget.TextView[@resource-id=\"com.google.android.dialer:id/empty_content_view_message\"]"
                     )
             );
-            assertEquals("Call your favorite contacts with just one tap", textContainer.getText());
+            assertEquals("Your contacts are just a tap away here", textContainer.getText());
+            WebElement textContainer2 = driver.findElement(
+                    AppiumBy.xpath(
+                            "//android.widget.EditText[@resource-id=\"com.google.android.dialer:id/open_search_bar\"]"
+                    )
+            );
+            assertEquals("Search contacts & places", textContainer2.getText());
+
         } finally {
             driver.pressKey(new KeyEvent(AndroidKey.HOME));
             driver.quit();
