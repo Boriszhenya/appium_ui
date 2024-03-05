@@ -14,22 +14,18 @@ import org.openqa.selenium.WebElement;
 import java.net.MalformedURLException;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class SunflowerAppTest {
-    AndroidDriver driver;
-
+public class SunflowerAppTest extends BaseTest {
+    private static final String APP_PATH = String.valueOf (
+            Path.of (System.getProperty ("user.dir"), "/src/main/resources", "test.apk"));
     @BeforeEach
     public void setUp() throws URISyntaxException, MalformedURLException {
-        UiAutomator2Options options = new UiAutomator2Options()
-                .setApp("C:\\Users\\guest_h0xcuas\\Documents\\appium_example\\src\\main\\resources\\test.apk") // Путь к приложению
-                .setUdid("emulator-5554");
-        driver = new AndroidDriver(
-                new URI("http://127.0.0.1:4723").toURL(), options
-        );
+        super.setUp(APP_PATH);
     }
 
     @Test
@@ -56,12 +52,6 @@ public class SunflowerAppTest {
     public void locatorsListTest() {
         List<WebElement> locatedList = driver.findElements(By.className("android.widget.TextView"));
         locatedList.forEach(this::printElementInfo);
-    }
-
-    @AfterEach
-    public void tearDown() {
-        driver.pressKey(new KeyEvent(AndroidKey.HOME));
-        driver.quit();
     }
 
     private void printElementInfo(WebElement webElement) {
