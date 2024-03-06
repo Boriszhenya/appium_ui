@@ -76,6 +76,7 @@ public class WebdriverIOAppTest extends BaseTest {
     public void testSwipeVertical() {
         final SwipePage swipePage = new SwipePage(driver);
         swipePage.open();
+        swipePage.performVerticalSwipe();
         //Сделайте swipe вниз
         assertTrue(swipePage.foundText.isDisplayed());
         assertEquals("You found me!!!", swipePage.foundText.getText());
