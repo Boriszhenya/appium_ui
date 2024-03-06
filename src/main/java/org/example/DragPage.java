@@ -74,6 +74,7 @@ public class DragPage {
     }
 
 
+
     public void dragAndDropOnePieces(WebElement elementDrag, WebElement elementDrop, PointerInput finger) {
         Sequence dragAndDrop = new Sequence(finger, 1);
         dragAndDrop.addAction(
