@@ -44,6 +44,9 @@ public class WebdriverIOAppTest extends BaseTest {
     @Test
     public void testWebView () {
         final WebViewPage webViewPage = new WebViewPage(driver);
+        webViewPage.getMainPageText();
+        webViewPage.switchToWebView();
+
 
         assertEquals (
                 "Next-gen browser and mobile automation test framework for Node.js",
