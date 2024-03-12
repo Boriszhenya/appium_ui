@@ -44,9 +44,19 @@ public class WebdriverIOAppTest extends BaseTest {
     @Test
     public void testWebView () {
         final WebViewPage webViewPage = new WebViewPage(driver);
-        assertEquals (
-                "Next-gen browser and mobile automation test framework for Node.js",
+        assertEquals ( "Next-gen browser and mobile automation test framework for Node.js",
                 webViewPage.getMainPageText()
+        );
+
+        webViewPage.switchToNativeApp();
+    }
+
+    @Test
+    public void testWebViewHW () {
+        final WebViewPage webViewPage = new WebViewPage(driver);
+
+        assertTrue (webViewPage.getText().contains(
+                "Contributing to a big Open Source project can be hard.")
         );
 
         webViewPage.switchToNativeApp();
@@ -65,6 +75,7 @@ public class WebdriverIOAppTest extends BaseTest {
         swipePage.open();
         swipePage.performHorizontalSwipe();
         assertTrue(swipePage.lastCardText.isDisplayed());
+
         assertEquals(
                 "WebdriverIO works in combination with most of the TDD and BDD test frameworks in the JavaScript world",
                 swipePage.lastCardText.getText()
@@ -76,8 +87,9 @@ public class WebdriverIOAppTest extends BaseTest {
         final SwipePage swipePage = new SwipePage(driver);
         swipePage.open();
         swipePage.performVerticalSwipe();
-        //Сделайте swipe вниз
+
         assertTrue(swipePage.foundText.isDisplayed());
+
         assertEquals("You found me!!!", swipePage.foundText.getText());
     }
 }

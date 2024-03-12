@@ -1,14 +1,10 @@
 package org.example;
 
-import io.appium.java_client.AppiumBy;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.android.AndroidDriver;
-import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -17,8 +13,6 @@ import java.util.Set;
 
 public class WebViewPage {
     protected final AndroidDriver driver;
-    
-
 
 
     public WebViewPage(AppiumDriver driver) {
@@ -42,25 +36,32 @@ public class WebViewPage {
 
     public String getMainPageText() {
         HomePage homePage = new HomePage(driver);
-       homePage.openMenu("Webview");
-       //driver.findElement(AppiumBy.xpath("//android.widget.Button[@text='Toggle navigation bar']")).click();
+        homePage.openMenu("Webview");
         switchToWebView();
-           //Внутри страницы открыть меню
-        //driver.findElement(By.xpath("//nav/div[1]/div[1]/button/svg/path")).click();
-           //Выбрать пункт “Community”
-       // driver.findElement(By.xpath("//android.view.View[@content-desc='\"'Community']")).click();
-           //Прокрутить вниз страницы
-
-           //Открыть ссылку “Office hours”
-      //  driver.findElement(By.xpath("//android.view.View[@resource-id=\"__docusaurus_skipToContent_fallback\"]/android.view.View/android.view.View/android.view.View[3]/android.view.View/android.widget.TextView")).click();
 
         return driver.findElement(By.cssSelector("header > div > p"))
                 .getText();
     }
-//    public void openMenu1() {
-//        By webButtonLocator = By.xpath("//android.widget.Button[@text=\"Toggle navigation bar\"]");
-//        WebElement menuButton = driver.findElement(webButtonLocator);
-//        menuButton.click();
-//    }
 
+
+    public String getText() {
+        HomePage homePage = new HomePage(driver);
+        homePage.openMenu("Webview");
+        switchToWebView();
+
+
+        //Внутри страницы открыть меню
+        driver.findElement(By.xpath("//nav/div[1]/div[1]/button")).click();
+        //Выбрать пункт “Community”
+        driver.findElement(By.xpath("//nav/div[3]/div[2]/div[1]/ul/li[5]/a")).click();
+        //Прокрутить вниз страницы
+        //driver.executeScript("window.scrollTo(0, document.body.scrollHeight)");
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", driver.findElement(By.xpath("//article/div[2]/ul[1]/li[1]/a")));
+
+        //Открыть ссылку “Office hours”
+        driver.findElement(By.xpath("//main/div/div/div/div/nav/a/div[2]")).click();
+
+        System.out.println(driver.findElement(By.xpath("//article/div/p[1]")).getText());
+        return driver.findElement(By.xpath("//article/div/p[1]")).getText();
+    }
 }
