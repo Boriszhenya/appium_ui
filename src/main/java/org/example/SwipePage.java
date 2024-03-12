@@ -81,7 +81,7 @@ public class SwipePage {
 //            swipe.addAction(finger.createPointerUp(PointerInput.MouseButton.LEFT.asArg()));
 //            swipe.addAction(new Pause(finger, Duration.ofMillis(600)));
 //            driver.perform(List.of(swipe));
-//        }
+//         }
 //    }
 //
 }
