@@ -50,7 +50,7 @@ public class AndroidTest {
                         "//android.widget.TextView[@resource-id='com.google.android.dialer:id/empty_content_view_message']"
                 )
         );
-        assertEquals("Call your favorite contacts with just one tap", textContainer.getText());
+        assertEquals("Your contacts are just a tap away here", textContainer.getText());
     }
 
     @Test
