@@ -1,13 +1,18 @@
+import io.appium.java_client.AppiumBy;
 import org.example.DragPage;
 import org.example.FormPage;
 import org.example.SwipePage;
 import org.example.WebViewPage;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.net.MalformedURLException;
 import java.net.URISyntaxException;
 import java.nio.file.Path;
+import java.time.Duration;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -72,6 +77,11 @@ public class WebdriverIOAppTest extends BaseTest {
     @Test
     public void testSwipeHorizontal() {
         final SwipePage swipePage = new SwipePage(driver);
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        WebElement loginBtn = wait.until(
+                ExpectedConditions.visibilityOfElementLocated(AppiumBy.accessibilityId("Webview"))
+        );
+
         swipePage.open();
         swipePage.performHorizontalSwipe();
         assertTrue(swipePage.lastCardText.isDisplayed());
